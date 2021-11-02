@@ -40,6 +40,11 @@ function sendJSONXMLHTTPRequest(url, objects, callback) {
                 if (xhr.status==200) {
                     //XXX: parse some JSON from the request!
                     //XXX: Pass the data to the callback!
+
+                    // How to parse JSON in JavaScript
+                    // Source: https://stackoverflow.com/questions/4935632/parse-json-in-javascript
+                    const obj = JSON.parse(xhr.responseText);
+                    console.log(callback(obj));
                 }
             } 
             catch(e) {
@@ -50,6 +55,15 @@ function sendJSONXMLHTTPRequest(url, objects, callback) {
     //XXX: POST to a URL
     //XXX: set the mimetype and the accept headers!
     // Remember to use application/json !
+
+    // How to POST from XMLHttpRequest
+    // Source: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send#example_post
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Accept", "application/json");
+    // How to send a object as JSON
+    // Source: https://stackoverflow.com/questions/4162749/convert-js-object-to-json-string
+    xhr.send(JSON.stringify(objects));
 }
 
 
@@ -262,6 +276,10 @@ mouse.mousedraggers.push(function(x,y,clicked,e) {
 
 function update() {
     //XXX: TODO Get the world from the webservice using a XMLHTTPRequest
+    sendJSONXMLHTTPRequest("/world", null, function(obj) {
+        world = obj;
+        //drawNextFrame();
+    });
     drawFrame();
 }
 
