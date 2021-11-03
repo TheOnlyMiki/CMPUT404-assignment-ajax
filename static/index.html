@@ -80,6 +80,9 @@ function drawCircle(context,entity) {
         //moveTo(x,y);
         fillStyle = entity["colour"];
         strokeStyle = fillStyle;
+		
+		// How to adding image to canvas
+		// Source: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images
 		if (entity["start"] == 1) {
 			var img = document.getElementById('startpoint');
 			drawImage(img, x-32, y-48, 55, 55);
@@ -95,26 +98,6 @@ function drawCircle(context,entity) {
 		else {
 			arc(x, y, (entity["radius"])?entity["radius"]:50, 0, 2.0 * Math.PI, false);
 		}
-        stroke();                                
-    }
-}
-
-function drawStart(context, entity) {
-	with(context) {
-        beginPath();
-        var x = entity["x"];
-        var y = entity["y"];
-		var img = document.getElementById('startpoint');
-		drawImage(img, x-32, y-32, 64, 64);
-        stroke();                                
-    }
-}
-
-function drawEnd(context, entity) {
-	with(context) {
-        beginPath();
-        var x = entity["x"];
-        var y = entity["y"];
 		
         stroke();                                
     }
