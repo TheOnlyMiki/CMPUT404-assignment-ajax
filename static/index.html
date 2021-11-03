@@ -20,9 +20,9 @@
         See the License for the specific language governing permissions and
         limitations under the License.
     "/>
-    <script src="json2.js"></script>
   </head> 
   <body bgcolor="black" height="100%" width="100%"> 
+    <img id="startpoint" src="startpoint.png"/>
     <canvas id="c" width="100%" height="100%" style="-webkit-tap-highlight-color: transparent;"></canvas> 
     <script>
 var canvas = document.getElementById('c');
@@ -40,7 +40,6 @@ function sendJSONXMLHTTPRequest(url, objects, callback) {
                 if (xhr.status==200) {
                     //XXX: parse some JSON from the request!
                     //XXX: Pass the data to the callback!
-
                     // How to parse JSON in JavaScript
                     // Source: https://stackoverflow.com/questions/4935632/parse-json-in-javascript
                     const obj = JSON.parse(xhr.responseText);
@@ -152,7 +151,7 @@ function addEntity(entity, data) {
     world[entity] = data;
     drawNextFrame(); // (but should we?)
     //XXX: Send a XHTML Request that updates the entity you just  modified!
-
+    sendJSONXMLHTTPRequest("/entity/"+entity, data, function(){});
 }
 
 var counter = 0;
@@ -261,16 +260,26 @@ mouse = (function() {
 // Add the application specific mouse listeners!
 //XXX: TODO Make these prettier!
 mouse.mousedowners.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'blue'});
+    addEntityWithoutName({'x':x,'y':y,'colour':'transparent', 'radius':0});
+    var img = new Image();
+    img.onload = function() {
+        canvas.drawImage(img, x-50, y-32);
+    }
+    img.src = "startpoint.png";
 });
 
 mouse.mouseuppers.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'red'});
+    addEntityWithoutName({'x':x,'y':y,'colour':'transparent', 'radius':0});
+    var img = new Image();
+    img.onload = function() {
+        canvas.drawImage(img, x-45, y-45);
+    }
+    img.src = "endpoint.png";
 });
 
 mouse.mousedraggers.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'green',
-                          'radius':10});
+    addEntityWithoutName({'x':x,'y':y,'colour':'while',
+                          'radius':2});
 });
 
 
@@ -278,7 +287,8 @@ function update() {
     //XXX: TODO Get the world from the webservice using a XMLHTTPRequest
     sendJSONXMLHTTPRequest("/world", null, function(obj) {
         world = obj;
-        //drawNextFrame();
+        // Using to update the other user's draw
+        drawNextFrame();
     });
     drawFrame();
 }
