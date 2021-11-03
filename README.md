@@ -15,6 +15,9 @@ Generally everything is LICENSE'D under the Apache 2 license by Abram Hindle.
 Contributions from:
 * JingZeng Xie
 
+License copy from repo: CMPUT404-assignment-websockets
+* Original URL - https://github.com/abramhindle/CMPUT404-assignment-websockets.git
+
 Reference list
 ====================
 * How to parse JSON in JavaScript - https://stackoverflow.com/questions/4935632/parse-json-in-javascript
