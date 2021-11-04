@@ -24,3 +24,4 @@ Reference list
 * How to POST from XMLHttpRequest - https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send#example_post
 * How to send a object as JSON - https://stackoverflow.com/questions/4162749/convert-js-object-to-json-string
 * How to adding image to canvas - https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images
+* how to return JSON by Flask - https://stackoverflow.com/questions/13081532/return-json-response-from-flask-view
