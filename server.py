@@ -80,6 +80,9 @@ def hello():
 def update(entity):
     '''update the entities via this interface'''
     [ myWorld.update(entity, key, value) for key, value in flask_post_json().items() ]
+    
+    # How to return JSON by Flask
+    # Source: https://stackoverflow.com/questions/13081532/return-json-response-from-flask-view
     return jsonify(myWorld.get(entity))
 
 @app.route("/world", methods=['POST','GET'])    
